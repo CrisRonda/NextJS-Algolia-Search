@@ -1,4 +1,3 @@
-// Update the import
 import {
   InstantSearch,
   Hits,
@@ -10,11 +9,11 @@ import {
   Pagination,
 } from "react-instantsearch-dom";
 import algoliasearch from "algoliasearch/lite";
-const searchClient = algoliasearch(
-  "2J3H4NW9CQ",
-  "c0e0d7ec14bd74c00c07f4f581bb2139"
-);
 
+const searchClient = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_ID,
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY
+);
 const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
   const parsedHit = highlight({
     highlightProperty: "_highlightResult",
@@ -42,12 +41,8 @@ const Hit = ({ hit }) => (
 const Search = () => {
   return (
     <div className="ais-InstantSearch">
-      <h1>React InstantSearch e-commerce demo</h1>
+      <h1>Algolia Demo with Firebase!</h1>
       <InstantSearch searchClient={searchClient} indexName="files_search">
-        {/* <SearchBox />
-        <Hits
-          hitComponent={Hit}
-        /> */}
         <div className="left-panel">
           <ClearRefinements />
           <h2>Brands</h2>

@@ -9,6 +9,7 @@ const config = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
 };
 
+console.log(process.env.ALGOLIA_ID);
 export default function initFirebase() {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
