@@ -1,5 +1,4 @@
 const functions = require("firebase-functions");
-const keyFilename = require("./service-account.json");
 const admin = require("firebase-admin");
 const { default: algoliasearch } = require("algoliasearch");
 const algoliaConfig = {

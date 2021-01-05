@@ -4,6 +4,7 @@ import { useUser } from "../utils/auth/useUser";
 import { getFiles } from "./api/storage";
 import { useState } from "react";
 import Search from "../components/Search";
+
 const fetcher = (url, token) =>
   fetch(url, {
     method: "GET",
