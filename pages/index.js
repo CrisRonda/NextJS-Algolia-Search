@@ -6,14 +6,9 @@ import { useState } from "react";
 import Search from "../components/Search";
 import Files from "../components/Files";
 import Users from "../components/Users";
-
-const fetcher = (url, token) =>
-  fetch(url, {
-    method: "GET",
-    headers: new Headers({ "Content-Type": "application/json", token }),
-    credentials: "same-origin",
-  }).then((res) => res.json());
-
+import UserLogged from "../components/UserLogged";
+import NoLogged from "../components/NoLogged";
+import fetcher from "../utils/fetcher";
 const Index = () => {
   const { user, logout } = useUser();
   const [storage, setStorage] = useState({ folders: [], files: [] });
@@ -22,51 +17,33 @@ const Index = () => {
     fetcher
   );
   const onGetFiles = async () => {
-    const { files, folders, nextPageToken } = await getFiles();
-    // console.log({ files, folders, nextPageToken });
+    const { files, folders } = await getFiles();
     setStorage({ files, folders });
   };
   if (!user) {
-    return (
-      <>
-        <p>Hi there!</p>
-        <p>
-          You are not signed in.{" "}
-          <Link href={"/auth"}>
-            <a>Sign in</a>
-          </Link>
-        </p>
-      </>
-    );
+    return <NoLogged />;
   }
 
   return (
     <div>
-      <Search />
-      <div>
-        <p>You're signed in. Email: {user.email}</p>
-        <button onClick={onGetFiles}>Get files</button>
-        <br />
-        <p
-          style={{
-            display: "inline-block",
-            color: "blue",
-            textDecoration: "underline",
-            cursor: "pointer",
-          }}
-          onClick={() => logout()}
-        >
-          Log out
-        </p>
-      </div>
+      <h1>Algolia Demo with Firebase!</h1>
+
+      <UserLogged user={user} logout={logout} />
       <div>
         <Link href={"/example"}>
-          <a>Another example page</a>
+          <a>Go to example page</a>
         </Link>
       </div>
+      <br />
+      <Search />
+
       {error && <div>Failed to fetch!</div>}
       <Users users={data?.users} />
-      <Files files={storage.files} folders={storage.folders} />
+      <Files
+        onGetFiles={onGetFiles}
+        files={storage.files}
+        folders={storage.folders}
+      />
     </div>
   );
 };
