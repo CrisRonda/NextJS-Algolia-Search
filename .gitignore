@@ -36,3 +36,6 @@ yarn-error.log*
 #firebase
 *service-account.json
 .firebaserc
+
+# Algolia
+*algolia.js

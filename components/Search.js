@@ -2,8 +2,6 @@ import {
   InstantSearch,
   Hits,
   SearchBox,
-  ClearRefinements,
-  RefinementList,
   Configure,
   Pagination,
   Highlight,

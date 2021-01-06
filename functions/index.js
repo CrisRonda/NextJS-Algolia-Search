@@ -1,10 +1,8 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const algoliaConfig = require("./algolia");
 const { default: algoliasearch } = require("algoliasearch");
-const algoliaConfig = {
-  appid: "2J3H4NW9CQ",
-  apikey: "5bbc35f573e6b521ec9fd0c1b12cba7c",
-};
+
 admin.initializeApp();
 
 const clientAlgolia = algoliasearch(algoliaConfig.appid, algoliaConfig.apikey);
