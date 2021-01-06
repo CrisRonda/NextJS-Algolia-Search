@@ -1,7 +1,7 @@
 const Users = ({ users = [] }) => {
   return (
     <>
-      <strong>Users</strong>;
+      <strong>Users</strong>
       {users.map(({ email }, k) => (
         <div key={k}>
           <p>{email}</p>
